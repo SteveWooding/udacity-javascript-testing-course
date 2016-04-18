@@ -22,10 +22,16 @@ describe('Address Book', function() {
 });
 
 describe('Asynchronous Address Book', function() {
-  it('should grab initial contacts', function() {
-    var addressBook = new AddressBook();
+  var addressBook = new AddressBook();
 
-    addressBook.getInitialContacts();
-    expect(addressBook.initialContacts).toBe(true);
-  })
+  beforeEach(function(done) {
+    addressBook.getInitialContacts(function() {
+      done();
+    });
+  });
+
+  it('should grab initial contacts', function(done) {
+    expect(addressBook.initialComplete).toBe(true);
+    done();
+  });
 })
